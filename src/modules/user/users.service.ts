@@ -1,13 +1,13 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { User } from 'src/schemas/User.schema';
+import { User } from './../../schemas/User.schema';
 import { CreateUserDto, LoginDto, UpdateProfileDto } from './dto/user.dto';
-import { Profile } from 'src/schemas/Profile.schema';
+import { Profile } from './../../schemas/Profile.schema';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { hash, verify } from 'argon2';
-import { useResponse } from 'src/helpers/hooks';
+import { useResponse } from './../../helpers/hooks';
 
 @Injectable()
 export class UsersService {

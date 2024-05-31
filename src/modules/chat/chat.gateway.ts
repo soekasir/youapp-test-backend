@@ -8,9 +8,9 @@ import {
   WebSocketServer,
 } from '@nestjs/websockets';
 import { Model } from 'mongoose';
-import { useResponse } from 'src/helpers/hooks';
-import { Chat } from 'src/schemas/Chat.schema';
-import { User } from 'src/schemas/User.schema';
+import { useResponse } from './../../helpers/hooks';
+import { Chat } from './../../schemas/Chat.schema';
+import { User } from './../../schemas/User.schema';
 import { GetUserByUserIdDto, WebsocketChatDataDto } from './dto/chat.dto';
 
 @WebSocketGateway(80, { namespace: 'chat' })

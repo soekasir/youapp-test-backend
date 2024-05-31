@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Profile, ProfileSchema } from 'src/schemas/Profile.schema';
-import { User, UserSchema } from 'src/schemas/User.schema';
+import { Profile, ProfileSchema } from './../../schemas/Profile.schema';
+import { User, UserSchema } from './../../schemas/User.schema';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { JwtStrategy } from './jwt.strategy';
