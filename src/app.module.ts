@@ -6,14 +6,16 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { ChatModule } from './modules/chat/chat.module';
 
+console.log(process.env.DATABASE_URI);
+
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1/youapp'),
-    UsersModule,
-    ChatModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    MongooseModule.forRoot(process.env.DATABASE_URI),
+    UsersModule,
+    ChatModule,
     JwtModule.register({}),
   ],
   controllers: [],
