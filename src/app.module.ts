@@ -6,7 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { ChatModule } from './modules/chat/chat.module';
 
-@Module({
+export const appModuleConfig = {
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
@@ -18,12 +18,14 @@ import { ChatModule } from './modules/chat/chat.module';
   ],
   controllers: [],
   providers: [],
-})
+};
+
+@Module(appModuleConfig)
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
-      .exclude('api/login', 'api/register', 'docs')
+      .exclude('api/login', 'api/register', 'api/docs')
       .forRoutes('*');
   }
 }

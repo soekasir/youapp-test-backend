@@ -3,9 +3,9 @@
 
 version: '3.8'
 services:
-  # app service for your backend
+  # app service for backend
   app:
-    container_name: backend
+    container_name: youapp-backend-test
     build:
       context: ./
       dockerfile: Dockerfile

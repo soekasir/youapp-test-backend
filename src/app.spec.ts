@@ -1,30 +1,14 @@
 /* eslint-disable prettier/prettier */
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './modules/user/users.controller';
-import { ConfigModule } from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose';
-import { UsersModule } from './modules/user/users.module';
-import { ChatModule } from './modules/chat/chat.module';
-import { JwtModule } from '@nestjs/jwt';
 import { ChatGateway } from './modules/chat/chat.gateway';
+import { appModuleConfig } from './app.module';
 
 describe('AppModule', () => {
   let app: TestingModule;
 
   beforeAll(async () => {
-    app = await Test.createTestingModule({
-      imports: [
-        ConfigModule.forRoot({
-          isGlobal: true,
-        }),
-        MongooseModule.forRoot(process.env.DATABASE_URI),
-        UsersModule,
-        ChatModule,
-        JwtModule.register({}),
-      ],
-      controllers: [],
-      providers: [],
-    }).compile();
+    app = await Test.createTestingModule(appModuleConfig).compile();
   });
 
   describe('users', () => {
