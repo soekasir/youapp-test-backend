@@ -26,7 +26,7 @@ export class UpdateProfileDto {
   @IsOptional()
   gender?: Gender;
 
-  @ApiProperty()
+  @ApiProperty({ description: 'format DD-MM-YYYY' })
   @IsOptional()
   birthday?: string;
 

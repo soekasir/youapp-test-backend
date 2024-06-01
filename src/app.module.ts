@@ -6,8 +6,6 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { ChatModule } from './modules/chat/chat.module';
 
-console.log(process.env.DATABASE_URI);
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -25,7 +23,7 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
-      .exclude('api/login', 'api/register', 'api/chat', 'docs')
+      .exclude('api/login', 'api/register', 'docs')
       .forRoutes('*');
   }
 }

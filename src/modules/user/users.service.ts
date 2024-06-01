@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
@@ -8,6 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { hash, verify } from 'argon2';
 import { useResponse } from './../../helpers/hooks';
+import { Ramalan } from 'src/helpers/calendar';
 
 @Injectable()
 export class UsersService {
@@ -34,7 +36,17 @@ export class UsersService {
   }
 
   async getProfile(user_id: Types.ObjectId) {
-    return await this.profileModel.findOne({ user: user_id });
+    // console.log('zodiac: ', Ramalan.getZodiac('13-11-1996'));
+    let result;
+    const profile = await this.profileModel.findOne({ user: user_id });
+    if(profile.birthday){
+      result={
+        zodiac: Ramalan.getZodiac(profile.birthday),
+        horoscrope: Ramalan.getHoroscope(profile.birthday),
+        ...profile.toObject()
+      }
+    }
+    return result||profile
   }
 
   async login(loginDto: LoginDto) {
